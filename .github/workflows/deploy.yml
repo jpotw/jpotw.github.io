@@ -45,11 +45,15 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: out
-          branch: gh-pages
-          clean: true
+          branch: main
+          clean-exclude: |
+            .github
+            .git
+            README.md
+            LICENSE
 
       - name: Verify deployment
         run: |
-          echo "Deployment to gh-pages branch completed."
-          echo "Please ensure GitHub Pages is configured to deploy from the gh-pages branch in your repository settings."
+          echo "Deployment to main branch completed."
+          echo "For user sites (username.github.io), GitHub Pages is automatically configured to deploy from the main branch."
           echo "It may take up to 10 minutes for changes to propagate." 
