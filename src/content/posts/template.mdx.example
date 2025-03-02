@@ -1,0 +1,49 @@
+---
+title: Your Post Title
+date: YYYY-MM-DD
+excerpt: A brief summary of your post (will appear on homepage and archive)
+tags: ["tag1", "tag2", "tag3"]
+author: Your Name
+featured: false
+---
+
+# Your Post Title
+
+Start your post content here. This is the main content of your blog post.
+
+## Subheading
+
+You can use standard Markdown formatting:
+
+- Bullet points
+- For lists
+- Like this
+
+1. Or numbered lists
+2. Like this
+3. For sequential steps
+
+### Code Examples
+
+```js
+// You can include code blocks
+function hello() {
+  console.log("Hello world!");
+}
+```
+
+### Quotes
+
+> You can include blockquotes for important statements or quotes from others.
+
+## Images
+
+You can include images if you place them in the public directory:
+
+![Alt text](/path/to/image.jpg)
+
+## Conclusion
+
+End your post with a conclusion or call to action.
+
+Happy writing! 

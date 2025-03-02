@@ -34,3 +34,62 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Blog System
+
+This blog is built with Next.js and uses MDX for content management. It features:
+
+1. Dynamic post routing based on MDX filenames
+2. Frontmatter for metadata management
+3. Automatic reading time calculation
+4. Categorization by year in the archive
+5. Responsive design for mobile and desktop
+6. Support for tags, authors, and featured posts
+
+### Mobile Responsiveness
+
+The blog is fully responsive and optimized for all device sizes:
+
+- Fluid typography that scales appropriately for different screen sizes
+- Responsive layout that adapts to mobile, tablet, and desktop
+- Touch-friendly navigation and interaction elements
+- Optimized reading experience on small screens
+- Properly scaled images and content
+
+### Post Management
+
+Blog posts are stored as MDX files in the `src/content/posts` directory. To create a new post:
+
+1. Create a new `.mdx` file in the `src/content/posts` directory
+2. The filename will become the URL slug (e.g., `my-post.mdx` becomes `/posts/my-post`)
+3. Add frontmatter at the top of the file:
+
+```
+---
+title: Your Post Title
+date: YYYY-MM-DD
+excerpt: A brief summary of your post
+tags: ["tag1", "tag2"]  # Optional
+author: Your Name        # Optional
+featured: true           # Optional
+---
+```
+
+4. Write your content using Markdown syntax
+
+The site will automatically:
+- Display posts on the home page, sorted by date
+- Add posts to the archive, organized by year
+- Create dedicated pages for each post with proper metadata
+
+### Content Structure
+
+- `src/content/posts/`: Contains all blog post MDX files
+- `src/lib/posts.ts`: Utility functions for managing posts
+- `src/app/posts/[slug]/`: Dynamic route for individual posts
+- `src/app/page.tsx`: Home page showing recent posts
+- `src/app/archive/page.tsx`: Archive page organizing posts by year
+
+### Adding Features
+
+To add new features to posts, edit the `src/lib/posts.ts` file to include additional metadata in the `Post` type and processing functions.
