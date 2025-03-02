@@ -93,3 +93,22 @@ The site will automatically:
 ### Adding Features
 
 To add new features to posts, edit the `src/lib/posts.ts` file to include additional metadata in the `Post` type and processing functions.
+
+### GitHub Pages Deployment
+
+This blog is configured to automatically deploy to GitHub Pages using GitHub Actions. The deployment process:
+
+1. Builds the Next.js application with static export
+2. Creates necessary files for GitHub Pages (.nojekyll, CNAME, 404.html)
+3. Pushes the built files to the `gh-pages` branch
+4. Deploys the site to GitHub Pages
+
+To manually trigger a deployment, simply push changes to the `main` branch:
+
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
+
+The GitHub Actions workflow will automatically build and deploy the site. The deployment can take up to 10 minutes to propagate.
