@@ -29,6 +29,10 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Preserve build output
+        run: |
+          mv out temp_out
+          
       - name: Clean gh-pages branch
         run: |
           git config --global user.name "GitHub Actions Bot"
@@ -40,7 +44,7 @@ jobs:
 
       - name: Copy build output
         run: |
-          cp -r out/* .
+          mv ../temp_out/* .
           touch .nojekyll
           git add .
           git commit -m "Deploy to GitHub Pages"
