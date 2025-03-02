@@ -29,10 +29,14 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
       - name: Preserve build output
         run: |
           mkdir -p /tmp/out
           cp -r out/* /tmp/out/
+          cp -r out/.nojekyll /tmp/out/ || true
           
       - name: Clean gh-pages branch
         run: |
@@ -46,7 +50,14 @@ jobs:
       - name: Copy build output
         run: |
           cp -r /tmp/out/* .
+          cp -r /tmp/out/.nojekyll . || true
           touch .nojekyll
+          echo "jpotw.github.io" > CNAME
           git add .
           git commit -m "Deploy to GitHub Pages"
-          git push -f origin gh-pages 
+          git push -f origin gh-pages
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment to gh-pages branch completed."
+          echo "Please ensure GitHub Pages is configured to deploy from the gh-pages branch in your repository settings." 
