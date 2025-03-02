@@ -11,8 +11,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build",
-    "deploy": "yarn export && touch out/.nojekyll && gh-pages -d out -t true"
+    "predeploy": "next build",
+"deploy": "gh-pages -d out -t"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.9",
