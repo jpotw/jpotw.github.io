@@ -15,6 +15,9 @@ const nextConfig = {
   
   // Ensure trailing slashes are handled correctly
   trailingSlash: true,
+  
+  // Disable the "x-powered-by" header
+  poweredByHeader: false,
 }
 
 module.exports = nextConfig 

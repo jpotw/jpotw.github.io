@@ -32,32 +32,24 @@ jobs:
       - name: Create .nojekyll file
         run: touch out/.nojekyll
 
-      - name: Preserve build output
+      - name: Prepare for deployment
         run: |
-          mkdir -p /tmp/out
-          cp -r out/* /tmp/out/
-          cp -r out/.nojekyll /tmp/out/ || true
+          # Create a 404.html file that's identical to index.html for SPA routing
+          cp out/index.html out/404.html
+          # Ensure .nojekyll exists
+          touch out/.nojekyll
+          # Create CNAME file
+          echo "jpotw.github.io" > out/CNAME
           
-      - name: Clean gh-pages branch
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
-          git fetch origin gh-pages || true
-          git checkout gh-pages || git checkout -b gh-pages
-          git rm -rf . || true
-          git clean -fdx
-
-      - name: Copy build output
-        run: |
-          cp -r /tmp/out/* .
-          cp -r /tmp/out/.nojekyll . || true
-          touch .nojekyll
-          echo "jpotw.github.io" > CNAME
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push -f origin gh-pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true
 
       - name: Verify deployment
         run: |
           echo "Deployment to gh-pages branch completed."
-          echo "Please ensure GitHub Pages is configured to deploy from the gh-pages branch in your repository settings." 
+          echo "Please ensure GitHub Pages is configured to deploy from the gh-pages branch in your repository settings."
+          echo "It may take up to 10 minutes for changes to propagate." 
