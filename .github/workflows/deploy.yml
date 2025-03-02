@@ -31,7 +31,8 @@ jobs:
 
       - name: Preserve build output
         run: |
-          mv out temp_out
+          mkdir -p /tmp/out
+          cp -r out/* /tmp/out/
           
       - name: Clean gh-pages branch
         run: |
@@ -44,7 +45,7 @@ jobs:
 
       - name: Copy build output
         run: |
-          mv ../temp_out/* .
+          cp -r /tmp/out/* .
           touch .nojekyll
           git add .
           git commit -m "Deploy to GitHub Pages"
