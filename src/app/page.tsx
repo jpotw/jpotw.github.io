@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 export default async function Home() {
   const posts = await getAllPosts();
+  const recent_posts = posts.slice(0, 5);
 
   return (
     <div className="space-y-12 sm:space-y-16 py-4 sm:py-8">
@@ -11,7 +12,7 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8 sm:space-y-12">
-        {posts.length > 0 ? (
+        {recent_posts.length > 0 ? (
           posts.map(post => (
             <article key={post.slug} className="space-y-2 sm:space-y-3">
               <time className="text-sm sm:text-base text-gray-500 dark:text-gray-400">{post.date}</time>
@@ -28,7 +29,7 @@ export default async function Home() {
           ))
         ) : (
           <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400">
-            No posts found. Create a post by adding an MDX file to the content/posts directory.
+            No posts found.
           </p>
         )}
       </section>
